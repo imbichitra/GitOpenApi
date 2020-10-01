@@ -32,10 +32,11 @@ public class UserDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user_detail, container, false);
         final TextView textView = view.findViewById(R.id.text1);
         viewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
-        viewModel.getUserData(new UserInterFace(){
-
+        textView.setText(viewModel.userDetails.getFullName());
+        /*viewModel.getUserData(new UserInterFace(){
             @Override
             public void onResult(UserDetail userDetail) {
+
                 textView.setText(userDetail.getFullName());
             }
 
@@ -43,7 +44,7 @@ public class UserDetailFragment extends Fragment {
             public void onFail(String error) {
 
             }
-        });
+        });*/
 
         return view;
     }

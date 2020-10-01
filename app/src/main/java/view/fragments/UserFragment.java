@@ -18,6 +18,8 @@ import android.widget.EditText;
 
 import com.bichi.gitopenapi.R;
 
+import model.UserDetail;
+import network.UserInterFace;
 import viewModel.UserViewModel;
 
 import static android.content.ContentValues.TAG;
@@ -59,7 +61,17 @@ public class UserFragment extends Fragment implements View.OnClickListener{
             Log.d(TAG, "onClick: "+userId);
             viewModel.setUserId(userId);
             viewModel.setRepo(repo1);
-            navController.navigate(R.id.action_userFragment_to_userDetailFragment);
+            viewModel.getUserData(new UserInterFace() {
+                @Override
+                public void onResult(UserDetail userDetail) {
+                    navController.navigate(R.id.action_userFragment_to_userDetailFragment);
+                }
+
+                @Override
+                public void onFail(String error) {
+
+                }
+            });
         }
     }
 }
